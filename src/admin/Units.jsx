@@ -13,13 +13,14 @@ import {
   ShowButton,
   EditButton,
   ReferenceField,
+  ReferenceInput,
+  SelectInput,
 } from 'react-admin';
 const validateRequired = required();
 
 export const UnitList = props => (
   <List {...props}>
       <Datagrid rowClick="edit">
-          <TextField source="name" />
           <TextField source="name" />
           <ReferenceField source="siteId" reference="sites">
             <TextField source="name" />
@@ -33,6 +34,9 @@ export const UnitEdit = props => (
       <SimpleForm>
           <TextInput source="id" />
           <TextInput source="name" />
+          <ReferenceInput source="siteId" reference="sites">
+            <SelectInput optionText="name" />
+          </ReferenceInput>
       </SimpleForm>
   </Edit>
 );
