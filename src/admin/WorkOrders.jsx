@@ -62,14 +62,18 @@ export const WorkOrderCreate = props => (
 export const WorkOrderEdit = props => (
   <Edit {...props}>
     <SimpleForm>
-    
+      <ReferenceInput source="creatorId" reference="users">
+        <SelectInput optionText="firstName" />
+      </ReferenceInput>
       <ReferenceInput source="siteId" reference="sites">
         <SelectInput optionText="name" />
       </ReferenceInput>
       <ReferenceInput source="unitId" reference="units">
         <SelectInput optionText="name" />
       </ReferenceInput>
-     
+      <ReferenceInput source="assigneeId" reference="users">
+        <SelectInput optionText="firstName" />
+      </ReferenceInput>
       <TextInput source="occupant" />
       <TextInput source="workRequested" validate={validateRequired} />
       <TextInput source="remarks" />

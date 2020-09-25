@@ -5,7 +5,7 @@ import { SiteList, SiteCreate, SiteEdit } from './admin/Sites'
 import { UnitCreate, UnitList, UnitEdit } from './admin/Units'
 import { UserCreate, UserList, UserEdit } from './admin/Users'
 import { LedgerCodeEdit, LedgerCodeList } from './admin/LedgerCodes'
-import { WorkOrderCreate, WorkOrrderList } from './admin/WorkOrders'
+import { WorkOrderCreate, WorkOrderEdit, WorkOrrderList } from './admin/WorkOrders'
 
 const dataProvider = crudProvider('http://localhost:3000');
 //  <Resource name="sites" list={SiteList} create={SiteCreate} edit={SiteEdit} show={ShowGuesser} />
@@ -16,7 +16,7 @@ const App = () => (
     <Resource name="ledger-codes" edit={LedgerCodeEdit} list={LedgerCodeList} show={ShowGuesser} options={{ label: 'GL Codes' }} />
     <Resource name="work-assets" edit={EditGuesser} list={ListGuesser} show={ShowGuesser} options={{ label: 'Work Assets' }} />
     <Resource name="work-user-logs" edit={EditGuesser} list={ListGuesser} show={ShowGuesser} options={{ label: 'Worker Logs' }} />
-    <Resource name="work-orders" create={WorkOrderCreate} edit={EditGuesser} list={WorkOrrderList} show={ShowGuesser} options={{ label: 'Worker Orders' }} />
+    <Resource name="work-orders" create={WorkOrderCreate} edit={WorkOrderEdit} list={WorkOrrderList} show={ShowGuesser} options={{ label: 'Worker Orders' }} />
     <Resource name="users" create={UserCreate} edit={UserEdit} list={UserList} show={ShowGuesser} />
   </Admin>
 );
