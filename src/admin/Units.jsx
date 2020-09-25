@@ -29,6 +29,17 @@ export const UnitList = props => (
   </List>
 );
 
+export const UnitCreate = props => (
+  <Create {...props}>
+      <SimpleForm>
+          <TextInput source="name" />
+          <ReferenceInput source="siteId" reference="sites">
+            <SelectInput optionText="name" />
+          </ReferenceInput>
+      </SimpleForm>
+  </Create>
+);
+
 export const UnitEdit = props => (
   <Edit {...props}>
       <SimpleForm>
