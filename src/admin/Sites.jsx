@@ -13,6 +13,7 @@ import {
   ShowButton,
   EditButton,
   ReferenceField,
+  ReferenceManyField,
 } from 'react-admin';
 const validateRequired = required();
 
@@ -34,6 +35,11 @@ export const SiteEdit = props => (
       <TextInput source="shortName" validate={validateRequired} />
       <TextInput source="name" validate={validateRequired} />
       <TextInput source="address" />
+      <ReferenceManyField reference="units" target="siteId" addLabel={false}>
+        <Datagrid rowClick="edit">
+          <TextField source="name" />
+        </Datagrid>
+      </ReferenceManyField>
     </SimpleForm>
   </Edit>
 );

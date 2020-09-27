@@ -25,7 +25,7 @@ export const UserCreate = props => (
           <TextInput source="firstName" />
           <TextInput source="lastName" />
           <TextInput source="username" />
-          <TextInput source="password" />
+          <TextInput source="tag" />
           <BooleanInput source="isActive" />
       </SimpleForm>
   </Create>
@@ -38,6 +38,7 @@ export const UserEdit = props => (
           <TextInput source="firstName" />
           <TextInput source="lastName" />
           <TextInput source="username" />
+          <TextInput source="tag" />
           <TextInput source="password" />
           <BooleanInput source="isActive" />
       </SimpleForm>
@@ -51,6 +52,7 @@ export const UserList = props => (
           <TextField source="firstName" />
           <TextField source="lastName" />
           <TextField source="username" />
+          <TextField source="tag" />
           <TextField source="password" />
           <BooleanField source="isActive" />
       </Datagrid>
