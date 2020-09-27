@@ -25,82 +25,9 @@ import {
   useInput,
   useQueryWithStore,
 } from "react-admin";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
 const validateRequired = required();
 
- const SexInput = (props) => {
-  const {
-    input,
-    meta: { touched, error },
-  } = useInput(props);
-
-  return (
-    <Autocomplete
-      freeSolo
-      options={props.options}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          {...props}
-          source="name"
-          label="Name"
-          margin="normal"
-          variant="outlined"
-        />
-      )}
-    />
-  );
-}; 
-
-const payload = {
-  filter: {},
-  pagination: { page: 1, perPage: 10 },
-  sort: { field: "name", order: "ASC" },
-};
-
-const UserList = React.forwardRef(() => {
-  return <AutocompleteInput
-          source="name"
-          options={[{id: 'ID', name: 'NAME'}]}
-        />
-});
-
-export const WorkAssetList = (props) => (
-  <Datagrid rowClick="edit">
-    <NumberField source="quantity" />
-    <TextField source="name" />
-
-    <NumberField source="price" />
-    <ReferenceField source="ledgerCodeId" reference="ledger-codes">
-      <TextField source="name" />
-    </ReferenceField>
-  </Datagrid>
-);
-
-/*
-
- <AutocompleteInput
-          source="name"
-          inputText={() => "Input"}
-          options={data}
-          optionText={() => "Test"}
-          inputValueMatcher={(input, suggestion, getOptionText) =>
-            input.toUpperCase().trim() === suggestion.descricao ||
-            input.toLowerCase().trim() ===
-              getOptionText(suggestion).toLowerCase().trim()
-          }
-        />
-
-*/
-
-const  TTT = (props)=> {
-  console.log(props)
-
-  return ( <AutocompleteInput {...props} optionText="name" optionValue="name" />)
-};
-
-export const WorkAssetCreate = (props) => {
+/* export const WorkAssetCreateOld = (props) => {
   const { data, loading, error } = useQueryWithStore({
     type: "getList",
     resource: "assets",
@@ -124,21 +51,7 @@ export const WorkAssetCreate = (props) => {
         redirect={`/work-orders/${props?.location?.state?.workOrderId}`}
       >
         <NumberInput source="quantity" />
-        <Autocomplete
-          freeSolo
-          options={props.options}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              
-              source="name"
-              label="Name"
-              margin="normal"
-              variant="outlined"
-            />
-          )}
-        />
-        <SexInput options={data.map(({ name }) => name)} />
+        <AutocompleteInput source="assetId" choices={data} optionText="name" />
         <NumberInput source="price" />
         <ReferenceInput source="ledgerCodeId" reference="ledger-codes">
           <SelectInput optionText="name" />
@@ -146,12 +59,45 @@ export const WorkAssetCreate = (props) => {
       </SimpleForm>
     </Create>
   );
-};
+}; */
+
+export const WorkAssetList = (props) => (
+  <Datagrid rowClick="edit">
+    <NumberField source="quantity" />
+    <ReferenceField source="assetId" reference="assets">
+      <TextField source="name" />
+    </ReferenceField>
+    <NumberField source="price" />
+    <ReferenceField source="ledgerCodeId" reference="ledger-codes">
+      <TextField source="name" />
+    </ReferenceField>
+  </Datagrid>
+);
+
+export const WorkAssetCreate = (props) => (
+    <Create {...props}>
+      <SimpleForm
+        defaultValue={props.location.state}
+        redirect={`/work-orders/${props?.location?.state?.workOrderId}`}
+      >
+        <NumberInput source="quantity" />
+        <ReferenceInput source="assetId" reference="assets">
+          <AutocompleteInput source="assetId" optionText="name" />
+        </ReferenceInput>
+        <NumberInput source="price" />
+        <ReferenceInput source="ledgerCodeId" reference="ledger-codes">
+          <SelectInput optionText="name" />
+        </ReferenceInput>
+      </SimpleForm>
+    </Create>
+  );
 
 const WorkAssetEditForm = (props) => (
   <SimpleForm {...props} redirect={`/work-orders/${props.record.workOrderId}`}>
     <NumberInput source="quantity" />
-    <TextInput source="name" />
+    <ReferenceInput source="assetId" reference="assets">
+      <AutocompleteInput source="assetId" optionText="name" />
+    </ReferenceInput>
     <NumberInput source="price" />
     <ReferenceInput source="ledgerCodeId" reference="ledger-codes">
       <SelectInput optionText="name" />
