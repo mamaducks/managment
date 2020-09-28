@@ -21,7 +21,7 @@ const validateRequired = required();
 export const UnitList = props => (
   <List {...props}>
       <Datagrid rowClick="edit">
-          <TextField source="name" />
+          <TextField source="name" label="Unit Name"/>
           <ReferenceField source="siteId" reference="sites">
             <TextField source="name" />
           </ReferenceField>

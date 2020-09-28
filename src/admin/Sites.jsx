@@ -47,7 +47,7 @@ export const SiteEdit = props => (
 export const SiteList = props => (
   <List {...props}>
     <Datagrid rowClick="edit">
-      <TextField source="shortName" />
+      <TextField label="Code" source="shortName" />
       <TextField source="name" />
       <TextField source="address" />
       <ShowButton />
